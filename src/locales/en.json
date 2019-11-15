@@ -2,7 +2,7 @@
   "default": {
     "app": {
       "name": "Dashboard",
-      "planner": "Routenplaner"
+      "planner": "Route planner"
     }
   }
 }
