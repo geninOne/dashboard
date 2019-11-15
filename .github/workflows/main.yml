@@ -28,8 +28,8 @@ jobs:
         working-directory: ./functions
         run: npm run build
       - name: Archive Production Artifact
-        working-directory: ./functions
         uses: actions/upload-artifact@master
+        working-directory: ./functions
         with:
           name: Functions
           path: lib
