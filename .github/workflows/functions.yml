@@ -43,4 +43,4 @@ jobs:
         env:
           PROJECT_ID: ${{ secrets.FIREBASE_PROJEKT_ID }}
           FIREBASE_TOKEN: ${{ secrets.FIREBASE_TOKEN }}
-          PROJECT_PATH: $GITHUB_WORKSPACE
+          PROJECT_PATH: '/home/runner/work/dashboard/dashboard'
