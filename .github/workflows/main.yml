@@ -38,8 +38,7 @@ jobs:
     needs: Build
     runs-on: ubuntu-latest
     steps:
-      - name: Set Enviroment
-        env:
+      - env:
           FIREBASE_PROJEKT_ID: ${{ secrets.FIREBASE_PROJEKT_ID }}
           FIREBASE_TOKEN: ${{ secrets.FIREBASE_TOKEN }}
       - name: Checkout Repo
