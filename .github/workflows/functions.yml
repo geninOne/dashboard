@@ -43,3 +43,4 @@ jobs:
         env:
           PROJECT_ID: ${{ secrets.FIREBASE_PROJEKT_ID }}
           FIREBASE_TOKEN: ${{ secrets.FIREBASE_TOKEN }}
+          PROJECT_PATH: $HOME
