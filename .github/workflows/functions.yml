@@ -1,4 +1,4 @@
-name: Deploy Dashboard to Firebase
+name: Deploy Function to Firebase
 
 on:
   push:
