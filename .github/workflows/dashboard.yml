@@ -1,4 +1,4 @@
-name: Deploy to Firebase
+name: Deploy Dashboard to Firebase
 
 on: 
   push:
@@ -21,17 +21,6 @@ jobs:
         with:
           name: Dashboard
           path: dist
-      - name: Install Dependencies
-        working-directory: ./functions
-        run: npm install
-      - name: Build App
-        working-directory: ./functions
-        run: npm run build
-      - name: Archive Production Artifact
-        uses: actions/upload-artifact@master
-        with:
-          name: Functions
-          path: functions/lib
           
   deploy:
     name: Deploy
@@ -49,18 +38,6 @@ jobs:
         uses: w9jds/firebase-action@master
         with:
           args: deploy --only hosting
-        env:
-          PROJECT_ID: ${{ secrets.FIREBASE_PROJEKT_ID }}
-          FIREBASE_TOKEN: ${{ secrets.FIREBASE_TOKEN }}
-      - name: Download Artifact Functions
-        uses: actions/download-artifact@master
-        with:
-          name: Functions
-          path: functions/lib
-      - name: Deploy Functions to Firebase
-        uses: w9jds/firebase-action@master
-        with:
-          args: deploy --only function
         env:
           PROJECT_ID: ${{ secrets.FIREBASE_PROJEKT_ID }}
           FIREBASE_TOKEN: ${{ secrets.FIREBASE_TOKEN }}
