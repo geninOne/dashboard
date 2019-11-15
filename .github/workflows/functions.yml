@@ -26,7 +26,6 @@ jobs:
     name: Deploy
     needs: Build
     runs-on: ubuntu-latest
-    working-directory: ./functions
     steps:
       - name: Checkout Repo
         uses: actions/checkout@master
