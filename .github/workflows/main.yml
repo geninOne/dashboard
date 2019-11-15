@@ -1,0 +1,62 @@
+name: Deploy to Firebase
+
+on: 
+  push:
+    branches: 
+      - master
+
+jobs:
+  build:
+    name: Build
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Repo 
+        uses: actions/checkout@master
+      - name: Install Dependencies
+        run: npm install
+      - name: Build App
+        run: npm run build
+      - name: Archive Production Artifact
+        uses: actions/upload-artifact@master
+        with:
+          name: Dashboard
+          path: dashboard
+      - name: Change Path to Functions
+        run: cd /functions
+      - name: Install Dependencies
+        run: npm install
+      - name: Build App
+        run: npm run build
+      - name: Archive Production Artifact
+        uses: actions/upload-artifact@master
+        with:
+          name: Functions
+          path: functions 
+          
+  deploy:
+    name: Deploy
+    needs: Build
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Repo
+        uses: actions/checkout@master
+      - name: Download Artifact Dashboard
+        uses: actions/download-artifact@master
+        with:
+          name: Dashboard
+      - name: Deploy Dashboard to Firebase
+        uses: w9jds/firebase-action@master
+        with:
+          args: deploy --only hosting:prod
+        env: 
+          FIREBASE_TOKEN: ${{ secrets.FIREBASE_TOKEN}}
+      - name: Download Artifact Functions
+        uses: actions/download-artifact@master
+        with:
+          name: Functions
+      - name: Deploy Functions to Firebase
+        uses: w9jds/firebase-action@master
+        with:
+          args: deploy --only function
+        env: 
+          FIREBASE_TOKEN: ${{ secrets.FIREBASE_TOKEN}}
