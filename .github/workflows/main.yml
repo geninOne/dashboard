@@ -20,7 +20,7 @@ jobs:
         uses: actions/upload-artifact@master
         with:
           name: Dashboard
-          path: dashboard
+          path: dist
       - name: Change Path to Functions
         run: cd /functions
       - name: Install Dependencies
@@ -31,7 +31,7 @@ jobs:
         uses: actions/upload-artifact@master
         with:
           name: Functions
-          path: functions 
+          path: lib
           
   deploy:
     name: Deploy
