@@ -47,9 +47,9 @@ jobs:
       - name: Deploy Dashboard to Firebase
         uses: w9jds/firebase-action@master
         with:
-          args: deploy --only hosting
+          args: deploy --only hosting --project ${{ secrets.FIREBASE_PROJEKT_ID }}
         env: 
-          FIREBASE_TOKEN: ${{ secrets.FIREBASE_TOKEN}}
+          FIREBASE_TOKEN: ${{ secrets.FIREBASE_TOKEN }}
       - name: Download Artifact Functions
         uses: actions/download-artifact@master
         with:
