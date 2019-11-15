@@ -37,9 +37,6 @@ jobs:
     name: Deploy
     needs: Build
     runs-on: ubuntu-latest
-    env:
-      FIREBASE_PROJEKT_ID: ${{ secrets.FIREBASE_PROJEKT_ID }}
-      FIREBASE_TOKEN: ${{ secrets.FIREBASE_TOKEN }}
     steps:
       - name: Checkout Repo
         uses: actions/checkout@master
@@ -50,9 +47,10 @@ jobs:
       - name: Deploy Dashboard to Firebase
         uses: w9jds/firebase-action@master
         with:
-          args: deploy --only hosting --project $FIREBASE_PROJEKT_ID
-        env: 
-          FIREBASE_TOKEN: $FIREBASE_TOKEN
+          args: deploy --only hosting
+        env:
+          PROJECT_ID: ${{ secrets.FIREBASE_PROJEKT_ID }}
+          FIREBASE_TOKEN: ${{ secrets.FIREBASE_TOKEN }}
       - name: Download Artifact Functions
         uses: actions/download-artifact@master
         with:
@@ -61,5 +59,6 @@ jobs:
         uses: w9jds/firebase-action@master
         with:
           args: deploy --only function
-        env: 
-          FIREBASE_TOKEN: $FIREBASE_TOKEN
+        env:
+          PROJECT_ID: ${{ secrets.FIREBASE_PROJEKT_ID }}
+          FIREBASE_TOKEN: ${{ secrets.FIREBASE_TOKEN }}
