@@ -43,7 +43,8 @@ jobs:
       - name: Download Artifact Dashboard
         uses: actions/download-artifact@master
         with:
-          name: dist
+          name: Dashboard
+          path: dist
       - name: Deploy Dashboard to Firebase
         uses: w9jds/firebase-action@master
         with:
@@ -54,7 +55,8 @@ jobs:
       - name: Download Artifact Functions
         uses: actions/download-artifact@master
         with:
-          name: functions/lib
+          name: Functions
+          path: functions/lib
       - name: Deploy Functions to Firebase
         uses: w9jds/firebase-action@master
         with:
