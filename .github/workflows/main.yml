@@ -21,13 +21,14 @@ jobs:
         with:
           name: Dashboard
           path: dist
-      - name: Change Path to Functions
-        run: cd /functions
       - name: Install Dependencies
+        working-directory: ./functions
         run: npm install
       - name: Build App
+        working-directory: ./functions
         run: npm run build
       - name: Archive Production Artifact
+        working-directory: ./functions
         uses: actions/upload-artifact@master
         with:
           name: Functions
