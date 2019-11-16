@@ -12,7 +12,7 @@ const routes = [
     component: Home
   },
   {
-    path: '/',
+    path: '/router-planner',
     name: 'router-planner',
     component: RouterPlanner
   },
